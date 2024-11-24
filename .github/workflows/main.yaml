@@ -58,6 +58,7 @@ jobs:
 
           echo "Running the new container..."
           docker run -d --name restaurant-web \
+            --network host \
             -p 8080:8080 \
             --env DB_URL=jdbc:mysql://localhost:3306/restaurant \
             --env DB_USERNAME=root \

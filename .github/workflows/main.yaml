@@ -61,7 +61,7 @@ jobs:
             -p 8080:8080 \
             --env DB_URL=jdbc:mysql://localhost:3306/restaurant \
             --env DB_USERNAME=root \
-            --env DB_PASSWORD=root \
+            --env DB_PASSWORD=${{ secrets.DB_PASSWORD }} \
             --env CLOUDINARY_NAME=${{ secrets.CLOUDINARY_NAME }} \
             --env CLOUDINARY_KEY=${{ secrets.CLOUDINARY_KEY }} \
             --env CLOUDINARY_SECRET=${{ secrets.CLOUDINARY_SECRET }} \

@@ -34,7 +34,7 @@ jobs:
 
     - name: Build and push Docker image
       run: |
-        IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/your-app:latest
+        IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/restaurant-web:latest
         docker build -t $IMAGE_NAME .
         docker push $IMAGE_NAME
 
@@ -47,17 +47,17 @@ jobs:
         key: ${{ secrets.VPS_KEY }}
         port: 22
         script: |
-          IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/your-app:latest
+          IMAGE_NAME=${{ secrets.DOCKER_USERNAME }}/restaurant-web:latest
 
           echo "Pulling the latest Docker image..."
           docker pull $IMAGE_NAME
 
           echo "Stopping and removing the old container if exists..."
-          docker stop your-app || true
-          docker rm your-app || true
+          docker stop restaurant-web || true
+          docker rm restaurant-web || true
 
           echo "Running the new container..."
-          docker run -d --name your-app \
+          docker run -d --name restaurant-web \
             -p 8080:8080 \
             --env DB_URL=jdbc:mysql://localhost:3306/restaurant \
             --env DB_USERNAME=root \

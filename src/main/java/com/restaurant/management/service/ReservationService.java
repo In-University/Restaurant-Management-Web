@@ -7,6 +7,7 @@ import com.restaurant.management.model.Reservation;
 import com.restaurant.management.repository.ReservationRepository;
 import com.restaurant.management.repository.ScheduleRepository;
 import com.restaurant.management.repository.TableRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -117,7 +118,8 @@ public class ReservationService {
         return reservationRepository.countByStatus(ReservationStatus.CONFIRMED);
     }
 
-    @Scheduled(fixedRate = 300000)
+    @Scheduled(fixedRate = 10000)
+    @Transactional
     public void cancelExpiredReservations() {
         LocalDate today = LocalDate.now();
         LocalTime deadlineTime = LocalTime.now().minusMinutes(30);

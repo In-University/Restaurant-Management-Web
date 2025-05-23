@@ -4,6 +4,8 @@
 -- ------------------------------------------------------
 -- Server version	8.0.39-0ubuntu0.20.04.1
 
+use restaurant;
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -66,7 +68,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES (1,'HCM','2024-12-12','khoa@gmail.com','Võ Minh ','Khoa','$2a$10$yw8e96VAM2tL3wN.NwaGAeDmBOpz6lniz7SyhB4uddSq3D7YtFw4G','0978586850'),(2,'a','2004-11-11','admin@gmail.com','Nhân','Nguyễn Văn','$2a$10$462Po/CkyyoB1Na.owLii.LEp2CbuOrTEnaTkM4hn3lSm4uaFB.m.','0365235789'),(3,'HCm','2004-11-11','noinfo@default.com','noinfo','noinfo','$2a$10$BMb.cRz09gdECqbyfJ5Te.gEZk2DDFJxO5/cfT08JtjzCmYwBXEmq','+84386056830');
+INSERT INTO `customer` VALUES (1,'HCM','2024-12-12','khoa@gmail.com','Võ Minh ','Khoa','$2a$10$yw8e96VAM2tL3wN.NwaGAeDmBOpz6lniz7SyhB4uddSq3D7YtFw4G','0978586850'),(3,'HCm','2004-11-11','noinfo@default.com','noinfo','noinfo','$2a$10$BMb.cRz09gdECqbyfJ5Te.gEZk2DDFJxO5/cfT08JtjzCmYwBXEmq','+84386056830');
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 

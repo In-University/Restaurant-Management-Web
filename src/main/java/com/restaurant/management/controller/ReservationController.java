@@ -39,7 +39,7 @@ public class ReservationController {
     }
 
     @GetMapping("/booking")
-    @PreAuthorize("hasRole('ADMIN') AND hasRole('CUSTOMER')")
+    @PreAuthorize("hasRole('ADMIN') OR hasRole('CUSTOMER')")
     public String booking(Model model,
            @RequestParam(value = "dateToCome", required = false) LocalDate reserDate,
            @RequestParam(value = "timeToCome", required = false) LocalTime reserTime,

@@ -43,10 +43,10 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
     );
 
     @Query("""
-        SELECT r 
-        FROM Reservation r 
-        WHERE r.dateToCome = :today 
-          AND r.status = 'ACCEPTED'
+        SELECT r
+        FROM Reservation r
+        WHERE r.dateToCome = :today
+          AND r.status = 'CONFIRMED'
           AND r.timeToCome <= :upTime
     """)
     List<Reservation> findReservationsUpcoming(

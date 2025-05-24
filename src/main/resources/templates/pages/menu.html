@@ -35,13 +35,16 @@
             </div>
 
             <!-- Search Bar -->
+            <p th:if="${query != null}" class="mb-2 text-sm text-gray-500">
+                Từ khóa vừa tìm kiếm: <span th:utext="${query}"></span>
+            </p>
             <div class="mb-4 md:mb-6">
                 <form th:action="@{/orders/menu/search}" method="get" class="relative">
                     <input
                             type="text"
                             id="searchInput"
                             name="query"
-                            th:value="${query}"
+                            value=""
                             placeholder="Search for food, coffee, etc..."
                             class="w-full px-3 md:px-4 py-2 rounded-lg border border-gray-200 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-blue-500" />
                     <input type="hidden" name="orderId" th:value="${orderId}" />

@@ -61,13 +61,7 @@ public class SecurityConfig {
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/login?logout")
                 .invalidateHttpSession(true)
-                .addLogoutHandler((request, response, authentication) -> {
-                    jakarta.servlet.http.Cookie cookie = new jakarta.servlet.http.Cookie("JSESSIONID", "");
-                    cookie.setMaxAge(0);
-                    cookie.setPath("/");
-                    cookie.setHttpOnly(true);
-                    response.addCookie(cookie);
-                })
+                .deleteCookies("JSESSIONID")
             )
             .userDetailsService(customUserDetailsService)
             .sessionManagement(session -> session

@@ -67,7 +67,23 @@ public class SecurityConfig {
             .sessionManagement(session -> session
                     .maximumSessions(1)
                     .maxSessionsPreventsLogin(false)
+            )
+            .headers(headers -> headers
+                        .contentSecurityPolicy(csp -> csp
+                                .policyDirectives(
+                                        "default-src 'self'; " +
+                                                "script-src 'self' https://cdn.tailwindcss.com https://unpkg.com; " +
+                                                "style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com ; " +
+                                                "img-src 'self' data: https://res.cloudinary.com https://images.unsplash.com;; " +
+                                                "font-src 'self' https://fonts.gstatic.com; " +
+                                                "connect-src 'self'; " +
+                                                "frame-ancestors 'none'; " +
+                                                "form-action 'self'; " +
+                                                "base-uri 'self'"
+                                )
+                        )
             );
+            
 
         http.csrf(AbstractHttpConfigurer::disable);
         return http.build();

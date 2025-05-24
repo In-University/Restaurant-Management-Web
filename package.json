@@ -1,0 +1,24 @@
+{
+  "name": "restaurant-management-web",
+  "version": "1.0.0",
+  "description": "Trước khi cài đặt, đảm bảo rằng bạn đã cài đặt các công cụ sau:\r - **Java 17** trở lên\r - **Maven 3.8+**\r - **MySQL 8+** (hoặc một cơ sở dữ liệu tương thích)\r - **Cloudinary Account** (nếu sử dụng tính năng tải ảnh)\r - **VNPay Account** (nếu sử dụng tính năng thanh toán)\r - **Twilio Account** (nếu sử dụng dịch vụ SMS)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/In-University/Restaurant-Management-Web.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/In-University/Restaurant-Management-Web/issues"
+  },
+  "homepage": "https://github.com/In-University/Restaurant-Management-Web#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.4.16"
+  }
+}

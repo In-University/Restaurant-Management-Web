@@ -1,7 +1,13 @@
 class Modal {
     constructor(modalId) {
-        console.log(modalId)
+        console.log(modalId);
         this.modal = document.getElementById(modalId);
+        this.closeBtn = this.modal.querySelector('#closeModalBtn');
+        if (this.closeBtn) {
+            this.closeBtn.addEventListener('click', () => {
+                this.close();
+            });
+        }
     }
     open() {
         this.modal.classList.remove('hidden');

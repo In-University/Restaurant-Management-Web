@@ -54,7 +54,7 @@ public class SecurityConfig {
             )
             .formLogin(form -> form
                     .loginPage("/login")
-                    .defaultSuccessUrl("/profile", false)
+                    .defaultSuccessUrl("/profile", true)
                     .permitAll()
             )
             .logout(logout -> logout
@@ -72,7 +72,7 @@ public class SecurityConfig {
                     .contentSecurityPolicy(csp -> csp
                             .policyDirectives(
                                     "default-src 'self'; " +
-                                            "script-src 'self' https://cdn.tailwindcss.com https://unpkg.com 'sha256-f5D0+4Q6y/bEGlQNyNwjffhtn5n2eGnMTfszd/Lv5PU='; " +
+                                            "script-src 'self' https://cdn.tailwindcss.com https://unpkg.com https://cdn.jsdelivr.net 'sha256-f5D0+4Q6y/bEGlQNyNwjffhtn5n2eGnMTfszd/Lv5PU='; " +
                                             "style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com ; " +
                                             "img-src 'self' data: https://res.cloudinary.com https://images.unsplash.com;; " +
                                             "font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; " +

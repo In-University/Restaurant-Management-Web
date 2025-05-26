@@ -68,21 +68,5 @@
       <span>Log Out</span>
     </a>
   </div>
-  <script th:inline="javascript">
-    document.addEventListener("DOMContentLoaded", function() {
-      const currentPath = window.location.pathname;
-      const navLinks = document.querySelectorAll('nav a');
-
-      navLinks.forEach(link => {
-        const linkPath = link.getAttribute('href').split('?')[0];
-
-        if (currentPath.startsWith(linkPath)) {
-          link.classList.add('text-blue-500', 'bg-blue-50');
-        } else {
-          link.classList.remove('text-blue-500', 'bg-blue-50');
-        }
-      });
-    });
-  </script>
 </div>
 

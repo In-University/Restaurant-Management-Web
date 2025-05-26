@@ -39,7 +39,7 @@ public class SecurityConfig {
             "/register",
             "/verify-otp",
             "/forgot-password",
-            "/resources/**", "/css/**",
+            "/resources/**", "/css/**", "/js/**",
             "/"
     };
 
@@ -72,7 +72,7 @@ public class SecurityConfig {
                     .contentSecurityPolicy(csp -> csp
                             .policyDirectives(
                                     "default-src 'self'; " +
-                                            "script-src 'self' https://cdn.tailwindcss.com https://unpkg.com https://cdn.jsdelivr.net 'sha256-f5D0+4Q6y/bEGlQNyNwjffhtn5n2eGnMTfszd/Lv5PU='; " +
+                                            "script-src 'self' https://cdn.tailwindcss.com https://unpkg.com https://cdn.jsdelivr.net 'sha256-f5D0+4Q6y/bEGlQNyNwjffhtn5n2eGnMTfszd/Lv5PU=' 'sha256-UXIUSp2XHl5JPOiFkBmS/dlXcBJg92Bi3rDppr/PMsA=';" +
                                             "style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com ; " +
                                             "img-src 'self' data: https://res.cloudinary.com https://images.unsplash.com;; " +
                                             "font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; " +

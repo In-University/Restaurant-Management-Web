@@ -2,6 +2,7 @@
     <div class="bg-white p-6 rounded-lg shadow-lg">
         <h2 class="text-lg font-bold mb-4" id="formTitle">Add Customer</h2>
         <form id="customerForm" onsubmit="submitCustomer(event)">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
             <input type="hidden" id="customerId" />
             <div class="mb-4">
                 <label class="block">Name</label>

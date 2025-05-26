@@ -37,6 +37,7 @@
             <!-- Search Bar -->
             <div class="mb-4 md:mb-6">
                 <form th:action="@{/orders/menu/search}" method="get" class="relative">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                     <input
                             type="text"
                             id="searchInput"
@@ -61,6 +62,7 @@
                     <p class="text-gray-500 text-xs sm:text-sm mb-1 sm:mb-2" th:text="'$' + ${item.price}"></p>
                     <p class="text-gray-400 text-xs sm:text-sm" th:text="99 + ' Bowls available'"></p>
                     <form th:action="@{/orders/add}" method="post" class="mt-2">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                         <input type="hidden" name="dishId" th:value="${item.dishId}" />
                         <input type="hidden" name="orderId" th:value="${orderId}" />
                         <input type="hidden" name="quantity" value="1" />
@@ -107,12 +109,15 @@
                     </div>
                     <div class="flex items-center space-x-1 md:space-x-2">
                         <form th:action="@{/orders/update}" method="post" class="inline">
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                             <input type="hidden" name="orderId" th:value="${orderId}" />
                             <input type="hidden" name="orderItemId" th:value="${cartItem.id}" />
                             <button type="submit" name="action" value="decrease" class="w-5 h-5 md:w-6 md:h-6 bg-gray-100 rounded-lg hover:bg-gray-200 text-xs md:text-base">-</button>
                         </form>
                         <span class="text-sm md:text-base" th:text="${cartItem.quantity}"></span>
                         <form th:action="@{/orders/update}" method="post" class="inline">
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                             <input type="hidden" name="orderId" th:value="${orderId}" />
                             <input type="hidden" name="orderItemId" th:value="${cartItem.id}" />
                             <button type="submit" name="action" value="increase" class="w-5 h-5 md:w-6 md:h-6 bg-gray-100 rounded-lg hover:bg-gray-200 text-xs md:text-base">+</button>

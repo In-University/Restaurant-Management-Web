@@ -10,6 +10,7 @@
         <p class="text-red-500 font-bold">Cost : <span th:text="${dish.getCost()}"></span> </p>
 
         <form th:action="@{/recipes/update/{dishId}(dishId=${dish.dishId})}" method="post" class="space-y-4">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
             <!-- Table for Recipes -->
             <div class="overflow-x-auto">
                 <table class="min-w-full bg-gray-50 border rounded-lg">

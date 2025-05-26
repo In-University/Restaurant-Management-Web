@@ -35,3 +35,4 @@ mvnw
 mvnw.cmd
 
 **/keystore.p12
+/node_modules

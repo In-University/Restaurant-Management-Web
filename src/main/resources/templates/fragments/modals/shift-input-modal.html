@@ -1,5 +1,6 @@
 <div th:fragment="shift-modal">
     <form id="modalForm" th:action="@{/shifts}" method="post" th:object="${shift}" class="bg-white max-w-md mx-auto p-6 rounded-lg shadow-md space-y-4">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <div id="modalTitle" class="font-medium text-lg text-gray-800">Create Open Shift</div>
         <input type="hidden" th:if="${shiftId != null}" th:field="*{shiftId}"/>
         <input type="hidden" th:field="*{available}"/>
@@ -105,7 +106,7 @@
 
         <!-- Buttons -->
         <div class="flex justify-end space-x-2 pt-4">
-            <button id="cancelButton" type="button" class="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition-colors">
+            <button id="closeModalBtn" type="button" class="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition-colors">
                 Cancel
             </button>
             <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">
@@ -113,21 +114,4 @@
             </button>
         </div>
     </form>
-
-    <script>
-        function handleShiftTypeChange() {
-            const shiftType = document.getElementById('shiftType').value;
-
-            document.getElementById('openShiftInputs').classList.add('hidden');
-            document.getElementById('fixedShiftInputs').classList.add('hidden');
-
-            if (shiftType === 'OPEN') {
-                document.getElementById('openShiftInputs').classList.remove('hidden');
-            } else if (shiftType === 'FIXED') {
-                document.getElementById('fixedShiftInputs').classList.remove('hidden');
-            }
-        }
-
-        handleShiftTypeChange();
-    </script>
 </div>

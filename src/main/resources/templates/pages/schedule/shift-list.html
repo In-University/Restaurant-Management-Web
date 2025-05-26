@@ -8,7 +8,7 @@
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-xl font-semibold">Shift Management</h2>
             <div class="flex space-x-3">
-                <button onclick="document.getElementById('shiftModal').classList.remove('hidden')" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                <button id="addShiftBtn" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
                     <i class="fas fa-plus mr-2"></i>Add Shift
                 </button>
             </div>
@@ -178,10 +178,8 @@
      th:classappend="${modalStatus == 'open' ? '' : ' hidden'}">
     <div th:replace="~{fragments/modals/shift-input-modal}"></div>
 </div>
-<script>
-    document.getElementById('cancelButton').addEventListener('click', () => {
-        document.getElementById('shiftModal').classList.add('hidden');
-    })
-</script>
+<th:block th:fragment="page-scripts">
+    <script th:src="@{/js/pages/shift-page.js}" defer></script>
+</th:block>
 </body>
 </html>

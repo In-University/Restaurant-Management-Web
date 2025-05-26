@@ -39,7 +39,7 @@ public class SecurityConfig {
             "/register",
             "/verify-otp",
             "/forgot-password",
-            "/resources/**", "/css/**",
+            "/resources/**", "/css/**", "/js/**",
             "/"
     };
 
@@ -89,9 +89,8 @@ public class SecurityConfig {
             //                 )
             //         )
             // );
-            
 
-        http.csrf(AbstractHttpConfigurer::disable);
+        // http.csrf(AbstractHttpConfigurer::disable);
         return http.build();
     }
 

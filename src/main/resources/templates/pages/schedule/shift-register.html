@@ -45,6 +45,7 @@
         <div class="flex space-x-4">
           <!-- Subscribe to Shift -->
           <form th:action="@{/shifts/register/{shiftId}(shiftId=${shift.shiftId})}" method="post" class="flex-1">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
             <button type="submit"
                     class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-300 flex items-center justify-center space-x-2">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

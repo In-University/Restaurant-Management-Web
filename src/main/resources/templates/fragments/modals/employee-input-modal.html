@@ -2,6 +2,7 @@
   <h2 id="modalTitle"
       class="text-xl font-semibold mb-6">Employee</h2>
   <form id="modalForm" method="post" action="employees/add" enctype="multipart/form-data">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
     <!-- Image Upload Area -->
     <div
             id="dropZone"

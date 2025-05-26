@@ -6,6 +6,7 @@
   <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
     <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Make a Reservation</h2>
     <form action="/reservations/booking" method="get" class="space-y-4">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
       <div>
         <label for="date" class="block text-sm font-medium text-gray-700 mb-2">Arrival Date</label>
         <input

@@ -3,6 +3,7 @@
         class="text-xl font-semibold mb-6">Employee</h2>
     <form id="modalForm" method="post" action="salary/edit" >
         <!-- Form Fields -->
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <div class="space-y-4">
             <div class="hidden">
                 <label class="block text-sm font-medium text-gray-700 mb-1">Salary ID</label>

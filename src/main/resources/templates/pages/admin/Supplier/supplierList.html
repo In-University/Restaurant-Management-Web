@@ -47,6 +47,7 @@
                                     <i class="fas fa-edit"></i>
                                 </button>
                                 <form th:action="@{/suppliers/delete/{id}(id=${supplier.supplierId})}" method="GET" class="inline formDeleteSupplier">
+                                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                                     <button type="submit" class="text-red-600 hover:text-red-900">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>

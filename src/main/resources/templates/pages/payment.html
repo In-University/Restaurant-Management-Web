@@ -19,6 +19,7 @@
             <!-- Left Column - Order Summary -->
             <div class="bg-gray-50 p-6 rounded-lg">
                 <form th:action="@{/orders/checkout}" method="GET" class="mb-4">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                     <div class="flex space-x-2">
                         <input hidden name="orderId" th:value="${orderId}">
                         <!-- Promo code input -->

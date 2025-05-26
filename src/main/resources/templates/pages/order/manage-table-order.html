@@ -9,20 +9,9 @@
                     : ~{fragments/order-item-sidebar}">
     </div>
 </div>
-<script>
-    function selectTable(tableId) {
-        let allTables = document.querySelectorAll('.border-orange-500');
-        allTables.forEach(table => {
-            table.classList.remove('border-orange-500');
-        });
-        let selectedTable = document.getElementById('table-' + tableId);
-        console.log(selectedTable)
-        let tableStatus = selectedTable.getAttribute('tableStatus');
-        if (selectedTable) {
-            selectedTable.classList.add('border-orange-500');
-        }
-        window.location.href = '/orders/manage?tableId=' + tableId + '&status=' + tableStatus;
-    }
-</script>
+
+<th:block th:fragment="page-scripts">
+    <script th:src="@{/js/pages/manage-table-order.js}" defer></script>
+</th:block>
 </body>
 </html>

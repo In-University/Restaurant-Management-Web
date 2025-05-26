@@ -154,7 +154,7 @@ public class OrderService {
     }
 
     public Optional<Order> findOrderByTableId(Long tableId) {
-        return orderRepository.findFirstByDiningTableIdAndAndOrderStatusIn(tableId, Arrays.asList(OrderStatus.PAID, OrderStatus.UNPAID, OrderStatus.PENDING));
+        return orderRepository.findFirstByDiningTableIdAndOrderStatusIn(tableId, Arrays.asList(OrderStatus.PAID, OrderStatus.UNPAID, OrderStatus.PENDING));
     }
 
     public Order getOrderById(String id) {

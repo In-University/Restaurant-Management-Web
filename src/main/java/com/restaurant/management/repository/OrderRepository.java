@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, String> {
-    Optional<Order> findFirstByDiningTableIdAndAndOrderStatusIn(Long diningTableId, List<OrderStatus> statuses);
+    Optional<Order> findFirstByDiningTableIdAndOrderStatusIn(Long diningTableId, List<OrderStatus> statuses);
 
     @Query("SELECT DATE(o.orderDate) AS date, COUNT(o) AS count "+
             "FROM Order o "+

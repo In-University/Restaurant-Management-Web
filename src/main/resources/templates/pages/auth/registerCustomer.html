@@ -4,13 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Account - Restaurant Management</title>
-    <!-- Sử dụng Tailwind CSS qua CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="/css/output.css" rel="stylesheet">
 </head>
-
-
-
-
 <body class="bg-gray-900 font-sans text-black antialiased">
 
 <!-- Container -->
@@ -101,18 +96,8 @@
         </div>
     </div>
 </div>
-
-<script>
-    const form = document.querySelector('form');
-    form.addEventListener('submit', function (e) {
-        const password = document.getElementById('password').value;
-        const confirm = document.getElementById('confirmPassword').value;
-        if (password !== confirm) {
-            e.preventDefault();
-            alert("Passwords do not match.");
-        }
-    });
-</script>
-
+<th:block th:fragment="page-scripts">
+    <script th:src="@{/js/pages/register-page.js}" defer></script>
+</th:block>
 </body>
 </html>

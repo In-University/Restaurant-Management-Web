@@ -51,8 +51,7 @@
                             <input type="hidden" name="orderItemId" th:value="${item.id}"/>
                             <input type="hidden" name=dishId th:value="${item.getDish().getDishId()}"/>
                             <input type="hidden" name="quantity" th:value="${item.quantity}"/>
-                            <select name="orderStatus" class="bg-white border border-gray-300 text-sm rounded-lg px-4 py-2 text-gray-800"
-                                    onchange="this.form.submit()"
+                            <select name="orderStatus" class="auto-submit-select bg-white border border-gray-300 text-sm rounded-lg px-4 py-2 text-gray-800"
                                     th:disabled="${item.orderStatus == T(com.restaurant.management.enums.OrderStatus).COMPLETED}">
                                 <option value="PENDING" class="bg-yellow-100 text-yellow-700"
                                         th:selected="${item.orderStatus == T(com.restaurant.management.enums.OrderStatus).PENDING}">
@@ -74,10 +73,8 @@
         </div>
     </div>
 </div>
-<script>
-        setInterval(function() {
-            location.reload();
-        }, 30000);
-</script>
+<th:block th:fragment="page-scripts">
+    <script th:src="@{/js/pages/chef-order.js}" defer></script>
+</th:block>
 </body>
 </html>

@@ -13,8 +13,6 @@ public class AuthenticationFailureListener {
     @Autowired
     private LoginAttemptService loginAttemptService;
 
-    // Lắng nghe các sự kiện đăng nhập thất bại phổ biến
-    // AuthenticationFailureLockedEvent xảy ra khi CustomUserDetailsService ném LockedException
     @EventListener({AuthenticationFailureBadCredentialsEvent.class, AuthenticationFailureLockedEvent.class})
     public void onAuthenticationFailure(AbstractAuthenticationFailureEvent event) {
         String usernameInfo = "N/A";
@@ -25,7 +23,6 @@ public class AuthenticationFailureListener {
                 ", Failure type: " + event.getClass().getSimpleName() +
                 ". Source IP will be processed by LoginAttemptService.");
 
-        // LoginAttemptService sẽ tự lấy IP từ request context
         loginAttemptService.loginFailed();
     }
 }

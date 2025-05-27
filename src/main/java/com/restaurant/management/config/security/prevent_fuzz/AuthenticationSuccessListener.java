@@ -22,7 +22,6 @@ public class AuthenticationSuccessListener implements ApplicationListener<Authen
         }
         System.out.println("Authentication success for user: " + username + ". Source IP will be processed by LoginAttemptService.");
 
-        // LoginAttemptService sẽ tự lấy IP từ request context
         loginAttemptService.loginSucceeded();
     }
 }

@@ -75,7 +75,7 @@ public class SecurityConfig {
                     .contentSecurityPolicy(csp -> csp
                             .policyDirectives(
                                     "default-src 'self'; " +
-                                            "script-src 'self' https://cdn.tailwindcss.com https://unpkg.com https://cdn.jsdelivr.net 'sha256-f5D0+4Q6y/bEGlQNyNwjffhtn5n2eGnMTfszd/Lv5PU=' 'sha256-UXIUSp2XHl5JPOiFkBmS/dlXcBJg92Bi3rDppr/PMsA=';" +
+                                            "script-src 'self' https://cdnjs.cloudflare.com https://unpkg.com https://cdn.jsdelivr.net 'sha256-f5D0+4Q6y/bEGlQNyNwjffhtn5n2eGnMTfszd/Lv5PU=' 'sha256-UXIUSp2XHl5JPOiFkBmS/dlXcBJg92Bi3rDppr/PMsA=';" +
                                             "style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com ; " +
                                             "img-src 'self' data: https://res.cloudinary.com https://images.unsplash.com https://limody.vn; " +
                                             "font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; " +
@@ -95,10 +95,6 @@ public class SecurityConfig {
     public AuthenticationEventPublisher authenticationEventPublisher() {
         return new DefaultAuthenticationEventPublisher();
     }
-//    @Bean
-//    public UserDetailsService userDetailsService() {
-//        return customUserDetailsService;
-//    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {

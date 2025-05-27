@@ -28,16 +28,15 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException, LockedException {
-        // Bước 1: Kiểm tra xem IP của client có bị khóa không
+
         if (loginAttemptService.isIpBlocked()) {
             String remainingLockTimeMessage = loginAttemptService.getFormattedIpLockoutDurationRemaining();
-            // Thông báo lỗi rõ ràng rằng IP bị khóa, không phải tài khoản cụ thể
+
             throw new LockedException("Access from your IP address has been temporarily blocked due to too many failed login attempts. Please try again in " + remainingLockTimeMessage + ".");
         }
 
         System.out.println("Attempting to load user by email (login):::" + email + " (IP not currently blocked)");
 
-        // Bước 2: Nếu IP không bị khóa, tiếp tục tìm kiếm người dùng
         Employee employee = employeeService.getEmployeeByEmail(email);
         if (employee != null) {
             return User.builder()
@@ -57,9 +56,6 @@ public class CustomUserDetailsService implements UserDetailsService {
                     .build();
         }
 
-        // Nếu không tìm thấy người dùng, ném UsernameNotFoundException
-        // Listener AuthenticationFailureListener sẽ vẫn gọi loginAttemptService.loginFailed()
-        // để ghi nhận lần thử thất bại từ IP này.
         throw new UsernameNotFoundException("User not found with email: " + email);
     }
 }

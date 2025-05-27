@@ -3,6 +3,8 @@ package com.restaurant.management.config.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationEventPublisher;
+import org.springframework.security.authentication.DefaultAuthenticationEventPublisher;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -55,6 +57,7 @@ public class SecurityConfig {
             .formLogin(form -> form
                     .loginPage("/login")
                     .defaultSuccessUrl("/profile", true)
+                    .failureUrl("/login?error=true")
                     .permitAll()
             )
             .logout(logout -> logout
@@ -88,11 +91,14 @@ public class SecurityConfig {
 //        http.csrf(AbstractHttpConfigurer::disable);
         return http.build();
     }
-
     @Bean
-    public UserDetailsService userDetailsService() {
-        return customUserDetailsService;
+    public AuthenticationEventPublisher authenticationEventPublisher() {
+        return new DefaultAuthenticationEventPublisher();
     }
+//    @Bean
+//    public UserDetailsService userDetailsService() {
+//        return customUserDetailsService;
+//    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {

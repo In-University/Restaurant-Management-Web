@@ -1,28 +1,43 @@
 package com.restaurant.management.config.security;
 
+import com.restaurant.management.config.security.prevent_fuzz.LoginAttemptService;
 import com.restaurant.management.model.Customer;
 import com.restaurant.management.model.Employee;
 import com.restaurant.management.service.CustomerService;
 import com.restaurant.management.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.util.Optional;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
+
     @Autowired
     private EmployeeService employeeService;
+
     @Autowired
     private CustomerService customerService;
+
+    @Autowired
+    private LoginAttemptService loginAttemptService;
+
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        System.out.println("Email login:::" + email);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException, LockedException {
+        // Bước 1: Kiểm tra xem IP của client có bị khóa không
+        if (loginAttemptService.isIpBlocked()) {
+            String remainingLockTimeMessage = loginAttemptService.getFormattedIpLockoutDurationRemaining();
+            // Thông báo lỗi rõ ràng rằng IP bị khóa, không phải tài khoản cụ thể
+            throw new LockedException("Access from your IP address has been temporarily blocked due to too many failed login attempts. Please try again in " + remainingLockTimeMessage + ".");
+        }
+
+        System.out.println("Attempting to load user by email (login):::" + email + " (IP not currently blocked)");
+
+        // Bước 2: Nếu IP không bị khóa, tiếp tục tìm kiếm người dùng
         Employee employee = employeeService.getEmployeeByEmail(email);
         if (employee != null) {
             return User.builder()
@@ -32,15 +47,19 @@ public class CustomUserDetailsService implements UserDetailsService {
                     .build();
         }
 
-        Optional<Customer> customer = customerService.getCustomerByEmail(email);
-        if (customer.isPresent()) {
+        Optional<Customer> customerOptional = customerService.getCustomerByEmail(email);
+        if (customerOptional.isPresent()) {
+            Customer customer = customerOptional.get();
             return User.builder()
-                    .username(customer.get().getEmail())
-                    .password(customer.get().getPassword())
+                    .username(customer.getEmail())
+                    .password(customer.getPassword())
                     .roles("CUSTOMER")
                     .build();
         }
 
+        // Nếu không tìm thấy người dùng, ném UsernameNotFoundException
+        // Listener AuthenticationFailureListener sẽ vẫn gọi loginAttemptService.loginFailed()
+        // để ghi nhận lần thử thất bại từ IP này.
         throw new UsernameNotFoundException("User not found with email: " + email);
     }
 }
